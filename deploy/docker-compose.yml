@@ -1,0 +1,11 @@
+services:
+  sex-agreement-app:
+    # build:
+    #   context: ..  # Dockerfile 位于上一级目录
+    #   dockerfile: Dockerfile
+    image: klause/sex-agreement-app:20250416
+    container_name: sex-agreement-app
+    restart: unless-stopped
+    pull_policy: always
+    ports:
+      - "9066:80" # 将主机的 80 端口映射到容器的 80 端口 (Nginx 默认端口)

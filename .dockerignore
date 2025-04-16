@@ -1,0 +1,26 @@
+# Git files
+.git
+.gitignore
+
+# Node modules
+node_modules
+
+# Build artifacts (Next.js)
+.next
+
+# Development files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env*
+!.env.example
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Docker files (if they are in the context but not needed inside)
+Dockerfile
+deploy/

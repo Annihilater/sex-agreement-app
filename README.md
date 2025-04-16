@@ -37,7 +37,62 @@
 
 ```bash
 npm run build
+# 对于 Node.js 部署 (旧方式，如果未使用静态导出)
 npm run start
+```
+
+## 使用 Docker 部署
+
+本项目已配置为通过 Docker 进行构建和部署，使用 Nginx 提供静态导出的文件。
+
+### 构建 Docker 镜像
+
+**1. 本地构建 (与您当前的 CPU 架构相同)**
+
+在项目根目录下运行：
+
+```bash
+docker build -t sex-agreement-app .
+```
+
+**2. 跨平台构建 (例如，在 Apple Silicon Mac 上构建适用于 Linux/AMD64 的镜像)**
+
+确保您的 Docker Desktop 已启用 Buildx (通常默认启用)。
+
+```bash
+# 构建适用于 linux/amd64 架构的镜像
+docker buildx build --platform linux/amd64 -t sex-agreement-app:amd64 --load .
+
+# 构建适用于 linux/arm64 架构的镜像 (如果需要)
+# docker buildx build --platform linux/arm64 -t sex-agreement-app:arm64 --load .
+```
+
+* `--platform`: 指定目标平台的架构。
+- `-t`: 为镜像打上标签 (例如 `sex-agreement-app:amd64`)。
+- `--load`: 将构建好的镜像加载到本地 Docker 镜像库中 (如果省略，则只构建不加载)。
+
+### 运行 Docker 容器
+
+使用 `deploy` 目录下的 `docker-compose.yml` 文件可以方便地启动服务：
+
+```bash
+# 进入 deploy 目录
+cd deploy
+
+# 启动服务 (后台运行)
+docker-compose up -d
+
+# 如果需要重新构建镜像并启动
+# docker-compose up --build -d
+```
+
+服务将在主机的 80 端口上运行。您可以通过浏览器访问 `http://localhost` (或服务器 IP 地址) 来查看应用。
+
+**停止服务:**
+
+```bash
+# 在 deploy 目录下
+docker-compose down
 ```
 
 ## 本地存储
