@@ -86,7 +86,7 @@ docker-compose up -d
 # docker-compose up --build -d
 ```
 
-服务将在主机的 80 端口上运行。您可以通过浏览器访问 `http://localhost` (或服务器 IP 地址) 来查看应用。
+服务将在主机的 9066 端口上运行。您可以通过浏览器访问 `http://localhost:9066` (或服务器 IP 地址) 来查看应用。
 
 **停止服务:**
 
